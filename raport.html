@@ -8,7 +8,7 @@
 
 <body>
 
-    <h2>Raportuj błąd</h2>
+    <h2>Raportuj błąd V2</h2>
 
     <!-- Prosty formularz -->
     <form id="bugForm">
@@ -47,17 +47,17 @@ ${description}
                 });
 
                 const data = await res.json();
-                
+
                 if (res.ok && data.success) {
                     alert("Raport wysłany! Link do issue: " + data.html_url);
-                    
+
                     // Opcjonalnie wyczyść formularz
                     document.getElementById("title").value = "";
                     document.getElementById("description").value = "";
                 } else {
                     alert("Nie udało się wysłać raportu. Błąd: " + (data.error || "Nieznany błąd"));
                 }
-                
+
                 console.log(data);
             } catch (err) {
                 console.error(err);
