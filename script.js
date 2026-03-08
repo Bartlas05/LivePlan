@@ -267,5 +267,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }, { threshold: 0.5 });
-  if(el) observer.observe(el);
+  
+  if (el) {
+    observer.observe(el);
+  } else if (bottomDock) {
+    bottomDock.classList.remove('hidden');
+    bottomDock.style.display = 'flex';
+  }
 });

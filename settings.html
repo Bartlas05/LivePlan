@@ -14,55 +14,43 @@
     <header>
         <div class="userPicture"><i class="fa-solid fa-user-graduate"></i></div>
         <div class="headerTextWrapper">
-            <div class="headerTextTop">Witaj</div>
-            <div class="headerTextBottom">Live Plan 0.6 <div id="betaTag">BETA</div>
-            </div>
+            <div class="headerTextTopAsSettings">Ustawienia</div>
         </div>
-        <a href="settings.html"> <button class="settingsButton"><i class="fa-solid fa-gear"></i></button></a>
+        </div>
+        <a href="index.html"><button class="settingsButtonClose"><i class="fa-solid fa-angle-left"></i></button></a>
     </header>
 
-    <section id="LiveWidget" class="LiveWidget">
-        <div class="LiveWidgetTopSection">
-            <div class="LiveWidgetTopSectionLeft">
-                <div class="LiveWidgetPicture"><i class="fa-solid fa-user-graduate"></i></div>
-                <div class="LiveWidgetFirstInfo">
-                    <div class="LiveWidgetFirstInfoTop"><span class="ID_type">Wykład</span> • <span
-                            class="ID_room">202A</span></div>
-                    <div class="LiveWidgetFirstInfoBottom ID_teacher">Maciej Dorobek</div>
+    <section class="settingsContent">
+
+        <section class="settingsSection">
+            <div class="settingsSectionHeader">Informacje o wersji</div>
+            <div class="settingsSectionContent settingsSectionContent-typeColumn">
+                <div class="settingsSectionContentHeader">Wersja aplikacji</div>
+                <div class="settingsSectionContentText">
+
                 </div>
             </div>
-            <div class="LiveWidgetTopSectionRight">
-                <div class="LiveWidgetTopSectionRightTopText ID_name">Administracja baz danych</div>
-            </div>
-        </div>
-        <div class="LiveWidgetBottomSection">
-            <div class="progressBar">
-                <div class="progressBarSlider"></div>
-                <div class="progressBarTimeWrapper">
-                    <div class="progressBarTime"><span class="ID_start">9:30</span> - <span class="ID_end">11:00</span>
+        </section>
+
+        <a href="raport.html">
+            <section class="settingsSection">
+                <div class="settingsSectionHeader">Kontakt</div>
+                <div class="settingsSectionContent settingsSectionContent-button">
+                    <i class="fa-regular fa-message"></i>
+                    <div class="settingsSectionContentWrapper">
+                        <div class="settingsSectionContentHeader">Wyślij opinię</div>
+                        <div class="settingsSectionContentText">Zasugeruj zmiany lub zgłoś błąd</div>
                     </div>
+                    <i class="fa-solid fa-chevron-right"></i>
                 </div>
-            </div>
-        </div>
+            </section>
+        </a>
+
     </section>
 
 
 
 
-    <section class="schedule">
-        <div class="scheduleHeader">
-            <div class="scheduleHeaderName">Plan zajęć</div>
-            <div class="scheduleHeaderDate">8 marzec 2026 • Zjazd 2</div>
-        </div>
-        <div class="scheduleNav">
-            <button class="scheduleNavButton scheduleNavButton--focus">Piątek</button>
-            <button class="scheduleNavButton">Sobota</button>
-            <button class="scheduleNavButton">Niedziela</button>
-        </div>
-        <div class="scheduleContent" id="scheduleContent">
-            <!-- Tutaj będą dynamicznie generowane bloki zajęć/przerw -->
-        </div>
-    </section>
 
     <footer>
         <div id="bottomDock" class="bottomDock">

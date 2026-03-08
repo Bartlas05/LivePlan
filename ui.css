@@ -540,3 +540,71 @@ nav {
     font-size: 10px;
     margin-right: 10px;
 }
+
+/*Ustawienia*/
+
+.headerTextTopAsSettings {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.settingsButtonClose {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 100px;
+    padding: 0 20px;
+    height: 44px;
+    width: 44px;
+    font-size: 22px;
+}
+
+.settingsContent {
+    margin: 0 20px 200px 20px;
+    width: calc(100% - 40px);
+}
+
+.settingsSectionHeader {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.settingsSectionContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    background-color: #FFF;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.settingsSectionContentWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.settingsSectionContent-button{
+
+}
+
+.settingsSectionContent-typeColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.settingsSectionContentHeader {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.settingsSectionContentText {
+    font-size: 12px;
+    font-weight: 500;
+}
