@@ -15,12 +15,21 @@ export async function handler(event, context) {
         });
 
         const data = await response.json();
+        console.log("GitHub response:", data); // zobacz w logach Netlify
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify(data)
-        };
+        if (data.html_url) {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ success: true, html_url: data.html_url })
+            };
+        } else {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ success: false, error: JSON.stringify(data) })
+            };
+        }
     } catch (err) {
-        return { statusCode: 500, body: err.toString() };
+        console.error(err);
+        return { statusCode: 500, body: JSON.stringify({ success: false, error: err.toString() }) };
     }
 }
