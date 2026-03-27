@@ -1,0 +1,15 @@
+{
+  "name": "Live Plan",
+  "short_name": "Live Plan",
+  "display": "standalone",
+  "theme_color": "#2A2B47",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

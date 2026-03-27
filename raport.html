@@ -139,12 +139,12 @@
         <label>
             Nazwa użytkownika:
             <input type="text" id="username" placeholder="@username">
-            <span style="font-size: 11px; color: #777; font-weight: 400; margin-top: -5px;">*opcjonalnie, np. Twój nick z GitHub</span>
+            <span style="font-size: 11px; color: #777; font-weight: 400; margin-top: -5px;">*opcjonalnie, np. przedstaw się albo wykorzystaj Twój nick z GitHub zaczynając od @</span>
         </label>
         <button type="submit">Wyślij raport</button>
 
     </form>
-    <a href="index.html"><button>Powrót do ustawień</button></a>
+    <a href="index.html"><button>Powrót do strony głównej</button></a>
 
     <script>
         function getOS() {
@@ -257,7 +257,7 @@ ${diagnosticsMarkdown}
                 const data = await res.json();
 
                 if (res.ok && data.success) {
-                    alert("Raport wysłany! Link do issue: " + data.html_url);
+                    alert("Raport został wysłany pomyślnie!");
 
                     // Wyczyść formularz
                     document.getElementById("type").value = "";
