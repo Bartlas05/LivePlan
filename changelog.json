@@ -1,0 +1,43 @@
+[
+  {
+    "version": "0.6.2",
+    "version_type": "Beta",
+    "date": "2026-03-27",
+    "time": "23:12",
+    "author": "Bartuś",
+    "new_features": [
+      "Dodano sekcję [Lista zmian] w ustawieniach"
+    ],
+    "upcoming": [
+      "Wygląd sekcji [Lista zmian] zostanie przystosowany do UI aplikacji"
+    ],
+        "warnings": [
+      "Aplikacja w wersji beta! Możliwe błędy oraz niestablina praca."
+    ]
+  },
+  {
+    "version": "0.6.1",
+    "version_type": "Beta",
+    "date": "2026-03-27",
+    "time": "21:55",
+    "author": "Bartuś",
+    "new_features": [
+      "Dodano Ikonę aplikacji (Android)",
+      "Dodano Ikonę aplikacji (IOS)",
+      "Dodano Favicon"
+    ],
+    "upcoming": [
+      "Obsługa wersjonowania"
+    ],
+    "known_issues": [
+      "(Android) Środek ikony jest za duży",
+      "(IOS) Środek ikony jest za mały"
+    ],
+    "bug_fixes": [
+      "Numer wersji w ustawianiach znowu się wyświetla"
+    ],
+    "warnings": [
+      "Aplikacja w wersji beta! Możliwe błędy oraz niestablina praca."
+    ]
+  }
+]

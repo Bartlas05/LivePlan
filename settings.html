@@ -29,10 +29,21 @@
             <div class="settingsSectionContent settingsSectionContent-typeColumn">
                 <div class="settingsSectionContentHeader">Wersja aplikacji</div>
                 <div class="settingsSectionContentText">
-
+                    0.6.2
                 </div>
             </div>
+
+                        <div style="height: auto; padding: 10px; margin-top:10px;" class="settingsSectionContent settingsSectionContent-typeColumn">
+                <div class="settingsSectionContentHeader">Lista zmian</div>
+                <div class="settingsSectionContentText" id="changelog">
+                   
+                </div>
+            </div>
+
+            
         </section>
+
+        
 
         <a href="raport.html">
             <section class="settingsSection">
@@ -82,6 +93,55 @@
             <span id="message1">Kolejne funkcje nadejdą w <br> następnych aktualizacjach.</span>
         </nav>
     </footer>
+
+
+
+<script>
+fetch('/changelog.json')
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('changelog');
+
+    data.forEach(entry => {
+      // Tworzymy rozwijany element dla każdej wersji
+      const details = document.createElement('details');
+
+      // Nagłówek wersji
+      const summary = document.createElement('summary');
+      summary.textContent = `Wersja ${entry.version} ${entry.version_type ? '(' + entry.version_type + ')' : ''} - ${entry.date} ${entry.time} (autor: ${entry.author})`;
+      details.appendChild(summary);
+
+      // Sekcje do wyświetlenia
+      const sections = [
+        { title: "Nowości", key: "new_features" },
+        { title: "Zapowiedzi", key: "upcoming" },
+        { title: "Znane błędy", key: "known_issues" },
+        { title: "Bug Fixy", key: "bug_fixes" },
+        { title: "Ostrzeżenia", key: "warnings" },
+      ];
+
+      sections.forEach(section => {
+        if (entry[section.key] && entry[section.key].some(item => item !== "--")) {
+          const secHeader = document.createElement('h4');
+          secHeader.textContent = section.title;
+          details.appendChild(secHeader);
+
+          const ul = document.createElement('ul');
+          entry[section.key].forEach(item => {
+            if(item !== "--") {
+              const li = document.createElement('li');
+              li.textContent = item;
+              ul.appendChild(li);
+            }
+          });
+          details.appendChild(ul);
+        }
+      });
+
+      container.appendChild(details);
+    });
+  });
+</script>
 
 </body>
 

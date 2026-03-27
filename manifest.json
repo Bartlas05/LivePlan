@@ -4,6 +4,7 @@
   "display": "standalone",
   "theme_color": "#2A2B47",
   "background_color": "#ffffff",
+  "version": "0.6.2",
   "icons": [
     {
       "src": "/icons/icon-maskable.png",
