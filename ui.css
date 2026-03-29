@@ -127,6 +127,7 @@ header {
     background-color: #2A2B47;
     box-sizing: border-box;
 }
+
 .LiveWidget--full {
     z-index: 100000;
     position: fixed;
@@ -138,6 +139,7 @@ header {
     padding: 15px;
     background-color: #2A2B47;
     box-sizing: border-box;
+    border-radius: 0px;
 }
 
 .LiveWidgetTopSection {
@@ -600,9 +602,7 @@ nav {
     margin-left: 10px;
 }
 
-.settingsSectionContent-button{
-
-}
+.settingsSectionContent-button {}
 
 .settingsSectionContent-typeColumn {
     display: flex;
@@ -622,13 +622,13 @@ nav {
 }
 
 #rotate-overla {
-  position: fixed;
-  inset: 0;
-  background: black;
-  color: white;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  font-size: 24px;
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 24px;
 }
