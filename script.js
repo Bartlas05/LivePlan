@@ -275,3 +275,38 @@ document.addEventListener("DOMContentLoaded", () => {
     bottomDock.style.display = 'flex';
   }
 });
+
+
+//obrót
+
+document.addEventListener("DOMContentLoaded", () => {
+  const widget = document.querySelector(".LiveWidget");
+
+  if (!widget) {
+    console.warn("Brak .LiveWidget w DOM");
+    return;
+  }
+
+  function checkOrientation() {
+    const isLandscape = screen.orientation
+      ? screen.orientation.type.includes("landscape")
+      : window.innerWidth > window.innerHeight;
+
+    if (isLandscape) {
+      widget.classList.add("LiveWidget--full");
+    } else {
+      widget.classList.remove("LiveWidget--full");
+    }
+  }
+
+  // start
+  checkOrientation();
+
+  // listener główny
+  if (screen.orientation) {
+    screen.orientation.addEventListener("change", checkOrientation);
+  }
+
+  // fallback
+  window.addEventListener("resize", checkOrientation);
+});

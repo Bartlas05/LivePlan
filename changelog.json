@@ -1,4 +1,15 @@
 [
+    {
+    "version": "0.6.3",
+    "version_type": "Beta",
+    "date": "",
+    "time": "",
+    "author": "Bartuś",
+    "new_features": [
+      "Dodano dynamiczny favicon, który dostosuje się do motywu przeglądarki",
+      "Dodano testowy pełnoekranowy widget po obróceniu urządzenia"
+    ]
+  },
   {
     "version": "0.6.2",
     "version_type": "Beta",
