@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script src="https://kit.fontawesome.com/38cd770473.js" crossorigin="anonymous"></script>
+    <title>Terminarz - Live Plan</title>
+    <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+    <header class="calendarHeader">
+        <a href="index.html" class="backButton"><i class="fa-solid fa-arrow-left"></i></a>
+        <div class="headerTextWrapper">
+            <div class="headerTextTop">Zjazdy</div>
+            <div class="headerTextBottom" id="calendarProgram">Informatyka NS 2026</div>
+        </div>
+        <a href="settings.html" class="settingsButton"><i class="fa-solid fa-gear"></i></a>
+    </header>
+
+    <section class="calendarContent">
+        <div class="calendarSummaryCard">
+            <div class="summaryText">Do końca semestru pozostało</div>
+            <div class="summaryValue" id="remainingZjazdy">-- zjazdów</div>
+        </div>
+
+        <div class="calendarFilter">
+            <select id="calendarProgramSelect" class="scheduleZjazdSelect" style="width: 100%;">
+                <!-- Dynamic major name -->
+            </select>
+        </div>
+
+        <div id="zjazdyList">
+            <!-- Dynamically generated zjazdy grouped by month -->
+        </div>
+    </section>
+
+    <footer>
+        <div id="bottomDock" class="bottomDock">
+            <div class="bottomDockLiveWidgetPicture LiveWidgetPicture"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="bottomDockWrapper">
+                <div class="bottomDockLiveWidgetFirstInfoTop LiveWidgetFirstInfoTop"><span class="ID_type">Wykład</span>
+                    • <span class="ID_room">202A</span></div>
+                <div class="bottomDockLiveWidgetTopSectionRightTopText LiveWidgetTopSectionRightTopText ID_name">
+                    Administracja baz danych</div>
+            </div>
+            <div class="progressBarDock progressBar">
+                <div class="progressBarSlider"></div>
+                <div class="progressBarTimeWrapper">
+                    <div class="progressBarTime"><span class="ID_start">9:30</span> - <span class="ID_end">11:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">
+                <button class="navButton">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+            </a>
+            <a href="calendar.html">
+                <button class="navButton navButton--focus">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <div class="navButtonText">Terminarz</div>
+                </button>
+            </a>
+        </nav>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Specific logic for calendar page
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Re-use logic from script.js if possible, or initialize separately
+            if (!api.loaded) {
+                await api.init();
+                const saved = localStorage.getItem('userProfile');
+                if (saved) {
+                    const profile = JSON.parse(saved);
+                    api.applyProfile(profile);
+                    renderCalendar();
+                }
+            } else {
+                renderCalendar();
+            }
+        });
+
+        function renderCalendar() {
+            const list = document.getElementById('zjazdyList');
+            const program = document.getElementById('calendarProgram');
+            const remaining = document.getElementById('remainingZjazdy');
+            const profile = api.profile;
+
+            if (!profile) return;
+
+            program.textContent = `${profile.kierunek} ${profile.forma === 'niestacjonarne' ? 'NS' : 'S'} 2026`;
+            
+            const groups = api.getGroups();
+            const today = api.getTodayStr();
+            let remainingCount = 0;
+
+            // Group groups by month
+            const months = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
+            const groupsByMonth = {};
+
+            groups.forEach((group, idx) => {
+                const days = api.getDaysInGroup(idx);
+                if (!days.length) return;
+                
+                const firstDay = days[0];
+                if (firstDay >= today) remainingCount++;
+
+                const date = new Date(firstDay);
+                const monthName = months[date.getMonth()];
+                
+                if (!groupsByMonth[monthName]) groupsByMonth[monthName] = [];
+                groupsByMonth[monthName].push({ idx, days });
+            });
+
+            remaining.textContent = `${remainingCount} zjazdów`;
+
+            list.innerHTML = '';
+            for (const month in groupsByMonth) {
+                const monthTitle = document.createElement('div');
+                monthTitle.className = 'calendarMonthTitle';
+                monthTitle.textContent = month;
+                list.appendChild(monthTitle);
+
+                groupsByMonth[month].forEach(item => {
+                    const zjazdCard = document.createElement('div');
+                    zjazdCard.className = 'calendarZjazdCard';
+                    
+                    const first = new Date(item.days[0]);
+                    const last = new Date(item.days[item.days.length - 1]);
+                    const rangeStr = `${first.getDate()} - ${last.getDate()} ${months[first.getMonth()].toLowerCase()}`;
+
+                    zjazdCard.innerHTML = `
+                        <div class="calendarZjazdHeader">
+                            <div class="zjazdTitle"><i class="fa-solid fa-calendar-day"></i> Zjazd ${item.idx + 1}</div>
+                            <div class="zjazdRange"><i class="fa-solid fa-clock"></i> ${rangeStr}</div>
+                        </div>
+                        <div class="calendarZjazdDays">
+                            ${item.days.map(dStr => {
+                                const d = new Date(dStr);
+                                const dayNames = ['Ndz','Pn','Wt','Śr','Cz','Pt','Sb'];
+                                return `
+                                    <div class="dayBubble">
+                                        <div class="dayInitial">${dayNames[d.getDay()]}</div>
+                                        <div class="dayDate">${d.getDate()} ${months[d.getMonth()].toLowerCase().substring(0, 3)}</div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                    list.appendChild(zjazdCard);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,4 +1,29 @@
 [
+  {
+    "version": "0.7A",
+    "version_type": "Beta",
+    "date": "2026-05-10",
+    "time": "10:35",
+    "author": "Bartuś",
+    "new_features": [
+      "Przejście na dynamiczny plan z pliku main.json (obsługa całego wydziału)",
+      "Nowy formularz kaskadowy (Wydział → Kierunek → Forma → Specjalność → Grupa)",
+      "System zapisywania profilu użytkownika w localStorage",
+      "Całkowity redesign planu dnia z osiami czasu (Timeline)",
+      "Nowa sekcja [Terminarz] z podziałem na zjazdy i miesiące",
+      "Inteligentne filtrowanie wykładów wspólnych dla wybranej grupy",
+      "Dynamiczny licznik czasu do końca zajęć w widgetcie live",
+      "Zastąpienie emoji systemowymi ikonami FontAwesome (lokalizacja, sala)",
+      "Odświeżony dolny pasek nawigacji"
+    ],
+    "bug_fixes": [
+        "Naprawiono problem z podwójnym przewijaniem przy otwartym profilu",
+        "Naprawiono nakładanie się ikon nagłówka na formularz profilu"
+    ],
+    "warnings": [
+      "Aplikacja w wersji beta! Możliwe błędy oraz niestablina praca."
+    ]
+  },
     {
     "version": "0.6.3",
     "version_type": "Beta",

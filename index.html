@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/38cd770473.js" crossorigin="anonymous"></script>
     <title>Live Plan</title>
     <link rel="stylesheet" href="ui.css">
-    <script src="script.js"></script>
+  
     <link rel="icon" href="/Icons/Live Plan Icon V2 -- Light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
     <link rel="icon" href="/Icons/Live Plan Icon V2 -- Dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
     <link rel="apple-touch-icon" href="/Icons/Live Plan Icon V2.1 -- Light (IOS) 512x512.png">
@@ -15,10 +15,10 @@
 
 <body>
     <header>
-        <div class="userPicture"><i class="fa-solid fa-user-graduate"></i></div>
+        <div id="profileSectionButton" class="userPicture"><i class="fa-solid fa-user-graduate"></i></div>
         <div class="headerTextWrapper">
             <div class="headerTextTop">Witaj</div>
-            <div class="headerTextBottom">Live Plan 0.6.3 <div id="betaTag">BETA</div>
+            <div class="headerTextBottom">Live Plan 0.7A <div id="betaTag">BETA</div>
             </div>
         </div>
         <a href="settings.html"> <button class="settingsButton"><i class="fa-solid fa-gear"></i></button></a>
@@ -36,6 +36,7 @@
             </div>
             <div class="LiveWidgetTopSectionRight">
                 <div class="LiveWidgetTopSectionRightTopText ID_name">Administracja baz danych</div>
+                <div class="ID_countdown"></div>
             </div>
         </div>
         <div class="LiveWidgetBottomSection">
@@ -49,21 +50,31 @@
         </div>
     </section>
 
-
-
-
     <section class="schedule">
         <div class="scheduleHeader">
-            <div class="scheduleHeaderName">Plan zajęć</div>
-            <div class="scheduleHeaderDate">8 marzec 2026 • Zjazd 2</div>
+            <div class="scheduleHeaderLeft">
+                <div class="scheduleHeaderName">Plan zajęć</div>
+                <div class="scheduleHeaderDate" id="scheduleDate"></div>
+                <div class="scheduleHeaderSemester" id="scheduleSemester"></div>
+            </div>
+            <div class="scheduleHeaderRight">
+                <div class="scheduleHeaderProgram" id="scheduleProgram"></div>
+                <select class="scheduleZjazdSelect" id="zjazdSelect">
+                    <option value="">Ładowanie...</option>
+                </select>
+            </div>
         </div>
-        <div class="scheduleNav">
-            <button class="scheduleNavButton scheduleNavButton--focus">Piątek</button>
-            <button class="scheduleNavButton">Sobota</button>
-            <button class="scheduleNavButton">Niedziela</button>
+        <div class="scheduleNav" id="scheduleNav">
+            <button class="scheduleNavButton" data-day="1">Pon</button>
+            <button class="scheduleNavButton" data-day="2">Wt</button>
+            <button class="scheduleNavButton" data-day="3">Śr</button>
+            <button class="scheduleNavButton" data-day="4">Czw</button>
+            <button class="scheduleNavButton" data-day="5">Pt</button>
+            <button class="scheduleNavButton" data-day="6">Sb</button>
+            <button class="scheduleNavButton" data-day="0">Ndz</button>
         </div>
         <div class="scheduleContent" id="scheduleContent">
-            <!-- Tutaj będą dynamicznie generowane bloki zajęć/przerw -->
+            <!-- Dynamically generated -->
         </div>
     </section>
 
@@ -74,8 +85,7 @@
                 <div class="bottomDockLiveWidgetFirstInfoTop LiveWidgetFirstInfoTop"><span class="ID_type">Wykład</span>
                     • <span class="ID_room">202A</span></div>
                 <div class="bottomDockLiveWidgetTopSectionRightTopText LiveWidgetTopSectionRightTopText ID_name">
-                    Administracja
-                    baz danych</div>
+                    Administracja baz danych</div>
             </div>
             <div class="progressBarDock progressBar">
                 <div class="progressBarSlider"></div>
@@ -87,15 +97,72 @@
         </div>
         <nav>
             <a href="index.html">
-                <buttton class="navButton navButton--focus">
+                <button class="navButton navButton--focus">
                     <i class="fa-solid fa-house"></i>
                     <div class="navButtonText">Home</div>
-                </buttton>
+                </button>
             </a>
-            <span id="message1">Kolejne funkcje nadejdą w <br> następnych aktualizacjach.</span>
+            <a href="calendar.html">
+                <button class="navButton">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </button>
+            </a>
         </nav>
     </footer>
 
+    <section id="profileSection" class="profileSection">
+        <div class="profileSection_header">
+            <button class="settingsButton" id="closeProfileButton"><i class="fa-solid fa-arrow-left"></i></button>
+                <h4>Profil</h4>
+            <a href="settings.html"> <button class="settingsButton"><i class="fa-solid fa-gear"></i></button></a>
+        </div>
+               <div class="profileSection_info">
+                 <div class="userPictureBig"><i class="fa-solid fa-user-graduate"></i></div>
+               </div>
+               <section class="profileSection_form">
+                <form id="profileForm">
+
+    <div class="profileFormGroup">
+        <label for="wydzial-select">Wydział</label>
+        <select id="wydzial-select" class="profileFormSelect">
+            <option value="">-- Wybierz wydział --</option>
+        </select>
+    </div>
+
+    <div class="profileFormGroup">
+        <label for="kierunek-select">Kierunek</label>
+        <select id="kierunek-select" class="profileFormSelect" disabled>
+            <option value="">-- Najpierw wybierz wydział --</option>
+        </select>
+    </div>
+
+    <div class="profileFormGroup">
+        <label for="forma-select">Forma studiów</label>
+        <select id="forma-select" class="profileFormSelect" disabled>
+            <option value="">-- Wybierz formę --</option>
+        </select>
+    </div>
+
+    <div class="profileFormGroup">
+        <label for="specjalnosc-select">Specjalność</label>
+        <select id="specjalnosc-select" class="profileFormSelect" disabled>
+            <option value="">-- Wybierz specjalność --</option>
+        </select>
+    </div>
+
+    <div class="profileFormGroup">
+        <label for="grupa-select">Grupa</label>
+        <select id="grupa-select" class="profileFormSelect" disabled>
+            <option value="">-- Najpierw wybierz powyższe --</option>
+        </select>
+    </div>
+
+    <button type="button" id="profileSaveBtn" class="profileSaveBtn" disabled>Zapisz profil</button>
+
+</form>
+               </section>
+    </section>
+  <script src="script.js"></script>
 </body>
 
 </html>
